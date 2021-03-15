@@ -7,6 +7,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import {
+  KeyboardDatePicker,
+  MuiPickersUtilsProvider,
+} from "@material-ui/pickers";
 
 export default function ItemModal({ closeModal }) {
   const [products, setProducts] = useState([]);
@@ -74,6 +78,24 @@ export default function ItemModal({ closeModal }) {
         rows={2}
         variant='outlined'
       />
+      <MuiPickersUtilsProvider>
+        <KeyboardDatePicker
+          // className={classes.formControl}
+          label='Deadline'
+          // disableToolbar
+          minDate={new Date()}
+          variant='inline'
+          format='dd/MM/yyyy'
+          margin='normal'
+          id='date-picker-inline'
+          inputVariant='outlined'
+          // value={task.endDate}
+          // onChange={(e) => handleChange("endDate", index, e)}
+          KeyboardButtonProps={{
+            "aria-label": "change date",
+          }}
+        />
+      </MuiPickersUtilsProvider>
 
       <Button variant='outlined' color='inherit' onClick={addProduct}>
         add Product

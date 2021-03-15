@@ -6,6 +6,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import ItemModal from "./ItemModal";
+import Table from "./Table";
 const axios = require("axios");
 
 const useStyles = makeStyles((theme) =>
@@ -58,7 +59,7 @@ export default function Home() {
           </div>
         </Fade>
       </Modal>
-      hey im home
+      <Table />
     </div>
   );
 }
