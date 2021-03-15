@@ -3,29 +3,20 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore } from "redux";
+import reducer from "./Data/reducer";
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import { Provider } from "react-redux";
 
-// let store = createStore(reducer)
-
-//STORE
-
-//ACTION
-const inc = () => {
-  type: "inc";
-};
-
-//REDUCER
-const counter = (state = 0, action) => {
-  switch (action.type) {
-    case "inc":
-      return state + 1;
-  }
-};
-//DISPATCH
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
