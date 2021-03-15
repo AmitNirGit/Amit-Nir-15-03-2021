@@ -1,6 +1,6 @@
-import React from "react";
-const axios = require("axios");
+import React, { useState, useEffect } from "react";
 import { get, post } from "../../network";
+const axios = require("axios");
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -13,5 +13,5 @@ export default function Home() {
     getProducts();
   }, []);
 
-  return <div></div>;
+  return <div>hey im home</div>;
 }

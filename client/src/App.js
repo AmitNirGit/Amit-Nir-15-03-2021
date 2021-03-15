@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from "./logo.svg";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import NotFound from "../src/components/helpers/NotFound";
+import Home from "../src/components/page1/Home";
+import Stores from "./components/page2/Stores";
+import NavBar from "../src/components/helpers/NavBar";
+
+// import "./App.css";
+const ArchiveContext = React.createContext();
+const ParchusedContext = React.createContext();
+const StoreContext = React.createContext();
+const CurrencyContext = React.createContext();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <>
+        <NavBar />
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/stores'>
+            <Stores />
+          </Route>
+          <Route path='*'>
+            <NotFound />
+          </Route>
+        </Switch>
+      </>
+    </Router>
   );
 }
 
