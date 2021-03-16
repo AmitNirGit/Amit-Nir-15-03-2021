@@ -80,7 +80,7 @@ export default function Home() {
 
 export const StyledButton = styled.div`
   /* position: absolute; */
-  background-color: #3f51b5;
+  background-color: rgba(10, 90, 16, 0.85);
   display: flex;
   justify-content: center;
   align-items: center;

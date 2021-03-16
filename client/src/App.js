@@ -5,6 +5,7 @@ import NotFound from "../src/components/helpers/NotFound";
 import Home from "../src/components/page1/Home";
 import ContainerPage1 from "../src/components/page1/Container";
 import Stores from "./components/page2/Stores";
+import ContainerPage2 from "./components/page2/Container";
 import NavBar from "../src/components/helpers/NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { get } from "./network";
@@ -20,7 +21,7 @@ function App() {
             <ContainerPage1 />
           </Route>
           <Route path='/stores'>
-            <Stores />
+            <ContainerPage2 />
           </Route>
           <Route path='*'>
             <NotFound />
