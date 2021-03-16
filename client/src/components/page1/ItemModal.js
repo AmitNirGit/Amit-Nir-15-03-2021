@@ -12,6 +12,7 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import { useSelector, useDispatch } from "react-redux";
+import { addNewItem } from "../../actions";
 
 export default function ItemModal({ closeModal }) {
   const [products, setProducts] = useState([]);
@@ -21,6 +22,7 @@ export default function ItemModal({ closeModal }) {
   const [store, setStore] = useState("");
   const [selectedDate, setSelectedDate] = React.useState(new Date());
   const currenctyRate = useSelector((state) => state.pickedCurrency);
+  const dispatch = useDispatch();
 
   const getProducts = async () => {
     const { data } = await axios.get("https://fakestoreapi.com/products");
@@ -54,8 +56,14 @@ export default function ItemModal({ closeModal }) {
 
   const addProduct = async () => {
     try {
-      const newProduct = { title, price, store, selectedDate };
+      const newItem = {
+        title,
+        priceUSD: price,
+        store,
+        deliveryDate: selectedDate,
+      };
       //todo add to my items
+      dispatch(addNewItem(newItem));
       Swal.fire("Success", "Item Added :)", "success")
         .then
         //todo reload

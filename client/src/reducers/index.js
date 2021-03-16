@@ -7,7 +7,7 @@ import { combineReducers } from "redux";
 const allReducers = combineReducers({
   currencyRates: currencyReducer,
   myArchive: archiveReducer,
-  myItmes: itemsReducer,
+  myItems: itemsReducer,
   pickedCurrency: pickedCurrencyReducer,
 });
 

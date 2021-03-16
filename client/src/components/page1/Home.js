@@ -9,7 +9,7 @@ import Table from "./Table";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import styled from "styled-components";
 import SingleItem from "./SingleItem";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) =>
 
 export default function Home() {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const myItems = useSelector((state) => state.myItems);
 
@@ -42,7 +42,6 @@ export default function Home() {
   const handleClose = () => {
     setOpen(false);
   };
-
   return (
     <div>
       <StyledButton
@@ -74,8 +73,7 @@ export default function Home() {
           </div>
         </Fade>
       </Modal>
-      <Table mainPage='home' data={myItems} />
-      <SingleItem />
+      {myItems ? <Table mainPage='home' data={myItems} /> : null}
     </div>
   );
 }

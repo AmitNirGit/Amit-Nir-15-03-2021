@@ -7,7 +7,6 @@ import ContainerPage1 from "../src/components/page1/Container";
 import Stores from "./components/page2/Stores";
 import NavBar from "../src/components/helpers/NavBar";
 import { useSelector, useDispatch } from "react-redux";
-import { useDataLayerValue } from "./Data/DataLayer";
 import { get } from "./network";
 const axios = require("axios");
 
