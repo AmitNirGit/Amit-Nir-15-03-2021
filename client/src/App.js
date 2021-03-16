@@ -12,17 +12,6 @@ import { get } from "./network";
 const axios = require("axios");
 
 function App() {
-  const [currency, setCurrency] = useState({});
-  //fetching currency rates every 10 minutes
-  const fetchCurrency = async () => {
-    const { data } = await axios.get(`https://api.exchangeratesapi.io/latest `);
-  };
-  fetchCurrency();
-  clearInterval();
-  setInterval(() => {
-    fetchCurrency();
-  }, 600000);
-
   return (
     <Router>
       <>

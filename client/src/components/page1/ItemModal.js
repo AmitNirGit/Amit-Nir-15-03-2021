@@ -3,14 +3,15 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
 import { Typography } from "@material-ui/core";
-import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
+import { useSelector, useDispatch } from "react-redux";
 
 export default function ItemModal({ closeModal }) {
   const [products, setProducts] = useState([]);
@@ -18,9 +19,8 @@ export default function ItemModal({ closeModal }) {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [store, setStore] = useState("");
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const currenctyRate = useSelector((state) => state.pickedCurrency);
 
   const getProducts = async () => {
     const { data } = await axios.get("https://fakestoreapi.com/products");
@@ -30,34 +30,32 @@ export default function ItemModal({ closeModal }) {
     setProducts(labeledProducts);
   };
 
+  //change handler of item picker
   const onChange = (product) => {
-    // console.log(product.__isNew__);
+    //self added items
     if (product && product.__isNew__) {
-      console.log("new");
       setTitle(product.value);
+      //fixed items
     } else if (product) {
-      console.log("fixed");
       setselectedProduct(product.value);
       setTitle(product.value.title);
-      setPrice(product.value.price);
+      setPrice(
+        (Math.round(product.value.price * currenctyRate * 100) / 100).toFixed(2)
+      );
+      //clear
     } else {
-      console.log("clear");
       setselectedProduct("");
       setPrice("");
     }
   };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
   const addProduct = async () => {
     try {
-      //todo add to my cart
+      const newProduct = { title, price, store, selectedDate };
+      //todo add to my items
       Swal.fire("Success", "Item Added :)", "success")
         .then
         //todo reload
@@ -70,6 +68,11 @@ export default function ItemModal({ closeModal }) {
       closeModal();
     }
   };
+
+  //fetch products from api
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   return (
     <div
@@ -110,7 +113,7 @@ export default function ItemModal({ closeModal }) {
           setPrice(e.target.value);
         }}
         id='outlined-multiline-static'
-        label='price'
+        label={currenctyRate > 1 ? "price in ILS ₪" : "price in USD $"}
         multiline
         rows={1}
         // variant='outlined'
@@ -119,12 +122,13 @@ export default function ItemModal({ closeModal }) {
       />
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
-          disableToolbar
+          // disableToolbar
+          minDate={new Date()}
           variant='inline'
-          format='MM/dd/yyyy'
+          format='dd/MM/yyyy'
           margin='normal'
           id='date-picker-inline'
-          label='Date picker inline'
+          label='Delivery date'
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{
@@ -134,7 +138,7 @@ export default function ItemModal({ closeModal }) {
       </MuiPickersUtilsProvider>
 
       <Button
-        style={{ margin: "auto", marginBottom: "0px" }}
+        style={{ marginTop: "10px", marginBottom: "0px" }}
         variant='outlined'
         color='inherit'
         onClick={addProduct}>

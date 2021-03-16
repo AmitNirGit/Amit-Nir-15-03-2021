@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import reducer from "./Data/reducer";
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore } from "redux";
 import { Provider } from "react-redux";
+import allReducers from "./reducers";
 
 const store = createStore(
-  reducer,
+  allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

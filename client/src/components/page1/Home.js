@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { get, post } from "../../network";
-import { useSelector } from "react-redux";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -9,6 +8,8 @@ import ItemModal from "./ItemModal";
 import Table from "./Table";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import styled from "styled-components";
+import SingleItem from "./SingleItem";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -33,6 +34,8 @@ export default function Home() {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
+  const myItems = useSelector((state) => state.myItems);
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -71,14 +74,15 @@ export default function Home() {
           </div>
         </Fade>
       </Modal>
-      <Table />
+      <Table mainPage='home' data={myItems} />
+      <SingleItem />
     </div>
   );
 }
 
 export const StyledButton = styled.div`
   /* position: absolute; */
-  background-color: rgb(22, 121, 30);
+  background-color: #3f51b5;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,7 +94,7 @@ export const StyledButton = styled.div`
   color: white;
   /* bottom: -10vh; */
   /* left: 2vw; */
-  box-shadow: 0 4px 4px 2px rgba(10, 12, 19, 0.78);
+  box-shadow: 0 2px 3px 2px rgba(10, 12, 19, 0.35);
   cursor: pointer;
   transition: 0.1s ease-in-out;
 
