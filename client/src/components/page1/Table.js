@@ -20,6 +20,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import DeleteIcon from "@material-ui/icons/Delete";
 import FilterListIcon from "@material-ui/icons/FilterList";
+import ArchiveIcon from "@material-ui/icons/Archive";
+import UnarchiveIcon from "@material-ui/icons/Unarchive";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -72,12 +74,16 @@ const headCells = [
     id: "name",
     numeric: false,
     disablePadding: true,
-    label: "Dessert (100g serving)",
+    label: "Item Name",
   },
-  { id: "calories", numeric: true, disablePadding: false, label: "Calories" },
-  { id: "fat", numeric: true, disablePadding: false, label: "Fat (g)" },
-  { id: "carbs", numeric: true, disablePadding: false, label: "Carbs (g)" },
-  { id: "protein", numeric: true, disablePadding: false, label: "Protein (g)" },
+  { id: "store", numeric: false, disablePadding: false, label: "Store" },
+  { id: "fat", numeric: true, disablePadding: false, label: "Price" },
+  {
+    id: "carbs",
+    numeric: true,
+    disablePadding: false,
+    label: "Delivery estimate",
+  }, //todo check date
 ];
 
 function EnhancedTableHead(props) {
@@ -89,6 +95,7 @@ function EnhancedTableHead(props) {
     numSelected,
     rowCount,
     onRequestSort,
+    tableType,
   } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -182,14 +189,18 @@ const EnhancedTableToolbar = (props) => {
           variant='h6'
           id='tableTitle'
           component='div'>
-          Nutrition
+          Items
         </Typography>
       )}
 
       {numSelected > 0 ? (
-        <Tooltip title='Delete'>
-          <IconButton aria-label='delete'>
-            <DeleteIcon />
+        <Tooltip title='Archive'>
+          <IconButton
+            aria-label='delete'
+            onClick={console.log("add to archive")}>
+            <ArchiveIcon />
+            Archive
+            {/* <DeleteIcon /> */}
           </IconButton>
         </Tooltip>
       ) : (
@@ -274,6 +285,7 @@ export default function EnhancedTable() {
 
     setSelected(newSelected);
   };
+  console.log(selected);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

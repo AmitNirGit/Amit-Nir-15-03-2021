@@ -1,5 +1,10 @@
 import React from "react";
+import Table from "./Table";
 
 export default function Archive() {
-  return <div>im archive</div>;
+  return (
+    <div>
+      <Table />
+    </div>
+  );
 }

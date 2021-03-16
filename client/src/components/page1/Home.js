@@ -7,7 +7,8 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import ItemModal from "./ItemModal";
 import Table from "./Table";
-const axios = require("axios");
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import styled from "styled-components";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -18,10 +19,12 @@ const useStyles = makeStyles((theme) =>
       width: "100%",
     },
     paper: {
+      width: "35%",
+      height: "40%",
       backgroundColor: theme.palette.background.paper,
       border: "2px solid #000",
       boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
+      padding: theme.spacing(2, 3, 2),
     },
   })
 );
@@ -39,9 +42,18 @@ export default function Home() {
 
   return (
     <div>
-      <button type='button' onClick={handleOpen}>
-        add products
-      </button>
+      <StyledButton
+        onClick={handleOpen}
+        style={{
+          marginLeft: "auto",
+          marginRight: "0.1vw",
+          height: "fit-content",
+        }}>
+        Add Item
+        <AddCircleIcon
+          style={{ fontSize: "1.3em", marginLeft: "0.5vw" }}
+        />{" "}
+      </StyledButton>
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'
@@ -63,3 +75,26 @@ export default function Home() {
     </div>
   );
 }
+
+export const StyledButton = styled.div`
+  /* position: absolute; */
+  background-color: rgb(22, 121, 30);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 10px;
+  margin: 2vh 0;
+  border-radius: 5px;
+  font-size: 1.2em;
+  color: white;
+  /* bottom: -10vh; */
+  /* left: 2vw; */
+  box-shadow: 0 4px 4px 2px rgba(10, 12, 19, 0.78);
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+
+  :hover {
+    transform: translate(4px, 0);
+  }
+`;
