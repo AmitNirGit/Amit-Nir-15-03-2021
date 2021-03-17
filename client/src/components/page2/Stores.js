@@ -32,9 +32,9 @@ function Row(props) {
   console.log(row);
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
-  let totalPrice;
+  let totalPrice = 0;
   row.history.forEach((item) => {
-    totalPrice = +item.priceUSD;
+    totalPrice = totalPrice + item.priceUSD;
   });
   totalPrice = (Math.round(totalPrice * pickedCurrency * 100) / 100).toFixed(2);
 
