@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/css/main.35846a4e.chunk.css",
-    "main.js": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/main.2550d6a2.chunk.js",
-    "main.js.map": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/main.2550d6a2.chunk.js.map",
-    "runtime-main.js": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/runtime-main.2565233a.js",
-    "runtime-main.js.map": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/runtime-main.2565233a.js.map",
-    "static/js/2.5c19b4fb.chunk.js": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/2.5c19b4fb.chunk.js",
-    "static/js/2.5c19b4fb.chunk.js.map": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/2.5c19b4fb.chunk.js.map",
-    "static/js/3.b7736f58.chunk.js": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/3.b7736f58.chunk.js",
-    "static/js/3.b7736f58.chunk.js.map": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/3.b7736f58.chunk.js.map",
-    "index.html": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/index.html",
-    "static/css/main.35846a4e.chunk.css.map": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/css/main.35846a4e.chunk.css.map",
-    "static/js/2.5c19b4fb.chunk.js.LICENSE.txt": "/http//AmitNirGit.github.io/Amit-Nir-15-03-2021/static/js/2.5c19b4fb.chunk.js.LICENSE.txt"
+    "main.css": "/Amit-Nir-15-03-2021/static/css/main.de403208.chunk.css",
+    "main.js": "/Amit-Nir-15-03-2021/static/js/main.2550d6a2.chunk.js",
+    "main.js.map": "/Amit-Nir-15-03-2021/static/js/main.2550d6a2.chunk.js.map",
+    "runtime-main.js": "/Amit-Nir-15-03-2021/static/js/runtime-main.d6c2741f.js",
+    "runtime-main.js.map": "/Amit-Nir-15-03-2021/static/js/runtime-main.d6c2741f.js.map",
+    "static/js/2.3d3bbfb0.chunk.js": "/Amit-Nir-15-03-2021/static/js/2.3d3bbfb0.chunk.js",
+    "static/js/2.3d3bbfb0.chunk.js.map": "/Amit-Nir-15-03-2021/static/js/2.3d3bbfb0.chunk.js.map",
+    "static/js/3.b7736f58.chunk.js": "/Amit-Nir-15-03-2021/static/js/3.b7736f58.chunk.js",
+    "static/js/3.b7736f58.chunk.js.map": "/Amit-Nir-15-03-2021/static/js/3.b7736f58.chunk.js.map",
+    "index.html": "/Amit-Nir-15-03-2021/index.html",
+    "static/css/main.de403208.chunk.css.map": "/Amit-Nir-15-03-2021/static/css/main.de403208.chunk.css.map",
+    "static/js/2.3d3bbfb0.chunk.js.LICENSE.txt": "/Amit-Nir-15-03-2021/static/js/2.3d3bbfb0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2565233a.js",
-    "static/js/2.5c19b4fb.chunk.js",
-    "static/css/main.35846a4e.chunk.css",
+    "static/js/runtime-main.d6c2741f.js",
+    "static/js/2.3d3bbfb0.chunk.js",
+    "static/css/main.de403208.chunk.css",
     "static/js/main.2550d6a2.chunk.js"
   ]
 }
