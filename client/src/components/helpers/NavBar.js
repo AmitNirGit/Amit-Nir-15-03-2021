@@ -64,10 +64,10 @@ export default function NavBar() {
           <Typography variant='h5' style={{ marginRight: "10px" }}>
             Shopping App
           </Typography>
-          <StyledLink to='/'>
+          <StyledLink to='/Amit-Nir-15-03-2021/'>
             <DrawerItem>Home</DrawerItem>
           </StyledLink>
-          <StyledLink to='/stores'>
+          <StyledLink to='/Amit-Nir-15-03-2021/stores'>
             <DrawerItem>Stores</DrawerItem>
           </StyledLink>
 

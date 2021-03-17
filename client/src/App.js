@@ -18,10 +18,10 @@ function App() {
       <>
         <NavBar />
         <Switch>
-          <Route exact path='/'>
+          <Route exact path='/Amit-Nir-15-03-2021/'>
             <ContainerPage1 />
           </Route>
-          <Route path='/stores'>
+          <Route path='/Amit-Nir-15-03-2021/stores'>
             <ContainerPage2 />
           </Route>
           <Route path='*'>

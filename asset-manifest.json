@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Amit-Nir-15-03-2021/static/css/main.de403208.chunk.css",
-    "main.js": "/Amit-Nir-15-03-2021/static/js/main.2550d6a2.chunk.js",
-    "main.js.map": "/Amit-Nir-15-03-2021/static/js/main.2550d6a2.chunk.js.map",
+    "main.js": "/Amit-Nir-15-03-2021/static/js/main.9d173430.chunk.js",
+    "main.js.map": "/Amit-Nir-15-03-2021/static/js/main.9d173430.chunk.js.map",
     "runtime-main.js": "/Amit-Nir-15-03-2021/static/js/runtime-main.d6c2741f.js",
     "runtime-main.js.map": "/Amit-Nir-15-03-2021/static/js/runtime-main.d6c2741f.js.map",
     "static/js/2.3d3bbfb0.chunk.js": "/Amit-Nir-15-03-2021/static/js/2.3d3bbfb0.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.d6c2741f.js",
     "static/js/2.3d3bbfb0.chunk.js",
     "static/css/main.de403208.chunk.css",
-    "static/js/main.2550d6a2.chunk.js"
+    "static/js/main.9d173430.chunk.js"
   ]
 }
