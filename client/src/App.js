@@ -9,6 +9,7 @@ import ContainerPage2 from "./components/page2/Container";
 import NavBar from "../src/components/helpers/NavBar";
 import { useSelector, useDispatch } from "react-redux";
 import { get } from "./network";
+import "./App.css";
 const axios = require("axios");
 
 function App() {

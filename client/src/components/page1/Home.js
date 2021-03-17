@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { get, post } from "../../network";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -35,7 +36,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const myItems = useSelector((state) => state.myItems);
-
+  myItems.sort((a, b) => a.deliveryDate.getTime() - b.deliveryDate.getTime());
   const handleOpen = () => {
     setOpen(true);
   };
@@ -44,18 +45,25 @@ export default function Home() {
   };
   return (
     <div>
-      <StyledButton
-        onClick={handleOpen}
-        style={{
-          marginLeft: "auto",
-          marginRight: "0.1vw",
-          height: "fit-content",
-        }}>
-        Add Item
-        <AddCircleIcon
-          style={{ fontSize: "1.3em", marginLeft: "0.5vw" }}
-        />{" "}
-      </StyledButton>
+      <div style={{ display: "flex" }}>
+        <Typography variant='h2' style={{ margin: "5px" }}>
+          My Products
+        </Typography>
+
+        <StyledButton
+          onClick={handleOpen}
+          style={{
+            marginLeft: "auto",
+            marginRight: "0.1vw",
+            height: "fit-content",
+          }}>
+          Add Item
+          <AddCircleIcon
+            style={{ fontSize: "1.3em", marginLeft: "0.5vw" }}
+          />{" "}
+        </StyledButton>
+      </div>
+
       <Modal
         aria-labelledby='transition-modal-title'
         aria-describedby='transition-modal-description'

@@ -1,4 +1,0 @@
-state
-currency - $ / ils /eur
-myItems - [{},{}]
-myArchive - [{},{}]

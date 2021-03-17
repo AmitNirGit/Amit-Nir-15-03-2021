@@ -25,6 +25,7 @@ import {
   removeItem,
   addNewItem,
 } from "../../actions";
+import { formatToIsraeliDate } from "../../helpers";
 
 const useStyles1 = makeStyles((theme) => ({
   root: {
@@ -190,7 +191,7 @@ export default function CustomPaginationActionsTable({ data, mainPage }) {
                 )}
               </TableCell>
               <TableCell style={{ width: 160 }} align='right'>
-                {row.deliveryDate + ""}
+                {formatToIsraeliDate(row.deliveryDate)}
               </TableCell>
               <TableCell style={{ width: 160 }} align='right'>
                 {mainPage === "home" ? (

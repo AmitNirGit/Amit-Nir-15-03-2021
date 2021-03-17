@@ -13,6 +13,7 @@ import {
 } from "@material-ui/pickers";
 import { useSelector, useDispatch } from "react-redux";
 import { addNewItem } from "../../actions";
+import styled from "styled-components";
 
 export default function ItemModal({ closeModal }) {
   const [products, setProducts] = useState([]);
@@ -25,11 +26,21 @@ export default function ItemModal({ closeModal }) {
   const dispatch = useDispatch();
 
   const getProducts = async () => {
-    const { data } = await axios.get("https://fakestoreapi.com/products");
-    const labeledProducts = data.map((prod) => {
-      return { value: prod, label: prod.title };
-    });
-    setProducts(labeledProducts);
+    try {
+      const { data } = await axios.get("https://fakestoreapi.com/products")
+        .then;
+      const labeledProducts = data.map((prod) => {
+        return { value: prod, label: prod.title };
+      });
+      setProducts(labeledProducts);
+    } catch (error) {
+      Swal.fire(
+        "Error Occurred",
+        "seems we are having a problem with our shop, sorry for the inconvenience",
+        "error"
+      );
+      return;
+    }
   };
 
   //change handler of item picker
@@ -54,7 +65,12 @@ export default function ItemModal({ closeModal }) {
     setSelectedDate(date);
   };
 
+  //adding a new item to the list
   const addProduct = async () => {
+    if (!title || !price || !store || !selectedDate) {
+      Swal.fire("Error Occurred", "one or more field is missing!", "error");
+      return;
+    }
     try {
       const newItem = {
         title,
@@ -62,18 +78,13 @@ export default function ItemModal({ closeModal }) {
         store,
         deliveryDate: selectedDate,
       };
-      //todo add to my items
       dispatch(addNewItem(newItem));
-      Swal.fire("Success", "Item Added :)", "success")
-        .then
-        //todo reload
-        ();
-      //todo reload^^
-      // updateLocal((prev: INotice[]) => prev?.concat(data));
+      Swal.fire("Success", "Item Added :)", "success");
+      closeModal();
     } catch (error) {
       Swal.fire("Error Occurred", error.message, "error");
-    } finally {
       closeModal();
+    } finally {
     }
   };
 
@@ -105,6 +116,7 @@ export default function ItemModal({ closeModal }) {
       </div>
 
       <TextField
+        required='true'
         style={{ padding: "5px", marginBottom: "10px" }}
         onChange={(e) => {
           setStore(e.target.value);
@@ -155,3 +167,7 @@ export default function ItemModal({ closeModal }) {
     </div>
   );
 }
+
+// export const StyledSwal = styled.Swal`
+//   z-index: 1000000;
+// `;

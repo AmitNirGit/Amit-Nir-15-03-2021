@@ -14,34 +14,29 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
+import { useSelector } from "react-redux";
+import { formatToIsraeliDate } from "../../helpers";
 
 const useRowStyles = makeStyles({
   root: {
     "& > *": {
       borderBottom: "unset",
     },
+    padding: "10px",
   },
 });
 
-function createData(name, calories, fat, carbs, protein, price) {
-  return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
-    price,
-    history: [
-      { date: "2020-01-05", customerId: "11091700", amount: 3 },
-      { date: "2020-01-02", customerId: "Anonymous", amount: 1 },
-    ],
-  };
-}
-
 function Row(props) {
+  const pickedCurrency = useSelector((state) => state.pickedCurrency);
   const { row } = props;
+  console.log(row);
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
+  let totalPrice;
+  row.history.forEach((item) => {
+    totalPrice = +item.priceUSD;
+  });
+  totalPrice = (Math.round(totalPrice * pickedCurrency * 100) / 100).toFixed(2);
 
   return (
     <React.Fragment>
@@ -55,40 +50,43 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component='th' scope='row'>
-          {row.name}
+          {row.store}
         </TableCell>
-        <TableCell align='right'>{row.calories}</TableCell>
-        <TableCell align='right'>{row.fat}</TableCell>
-        <TableCell align='right'>{row.carbs}</TableCell>
-        <TableCell align='right'>{row.protein}</TableCell>
+        <TableCell align='left'>{row.history.length}</TableCell>
+        <TableCell align='left'>{totalPrice}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout='auto' unmountOnExit>
             <Box margin={1}>
               <Typography variant='h6' gutterBottom component='div'>
-                History
+                Items{" "}
               </Typography>
               <Table size='small' aria-label='purchases'>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align='right'>Amount</TableCell>
-                    <TableCell align='right'>Total price ($)</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Estimated delivery date</TableCell>
+                    <TableCell align='left'>Price</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.date}>
+                    <TableRow key={historyRow.title}>
                       <TableCell component='th' scope='row'>
-                        {historyRow.date}
+                        {historyRow.title}
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align='right'>{historyRow.amount}</TableCell>
-                      <TableCell align='right'>
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
+                      <TableCell>
+                        {formatToIsraeliDate(historyRow.deliveryDate)}
                       </TableCell>
+                      <TableCell align='left'>
+                        {(
+                          Math.round(
+                            historyRow.priceUSD * pickedCurrency * 100
+                          ) / 100
+                        ).toFixed(2) + " "}
+                        {pickedCurrency > 1 ? "₪" : "$"}
+                      </TableCell>{" "}
                     </TableRow>
                   ))}
                 </TableBody>
@@ -119,30 +117,27 @@ Row.propTypes = {
   }).isRequired,
 };
 
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0, 3.99),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3, 4.99),
-  createData("Eclair", 262, 16.0, 24, 6.0, 3.79),
-  createData("Cupcake", 305, 3.7, 67, 4.3, 2.5),
-  createData("Gingerbread", 356, 16.0, 49, 3.9, 1.5),
-];
-
-export default function CollapsibleTable() {
+export default function CollapsibleTable({ data }) {
+  const pickedCurrency = useSelector((state) => state.pickedCurrency);
   return (
     <TableContainer component={Paper}>
       <Table aria-label='collapsible table'>
-        <TableHead>
+        <TableHead style={{ backgroundColor: "rgb(63, 81, 181)" }}>
           <TableRow>
             <TableCell />
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align='right'>Calories</TableCell>
-            <TableCell align='right'>Fat&nbsp;(g)</TableCell>
-            <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
-            <TableCell align='right'>Protein&nbsp;(g)</TableCell>
+            <TableCell style={{ color: "white" }}>
+              <b>Store</b>
+            </TableCell>
+            <TableCell align='left' style={{ color: "white" }}>
+              <b>Quantity</b>
+            </TableCell>
+            <TableCell align='left' style={{ color: "white" }}>
+              <b>Total Price {pickedCurrency > 1 ? "₪" : "$"}</b>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {data.map((row) => (
             <Row key={row.name} row={row} />
           ))}
         </TableBody>
