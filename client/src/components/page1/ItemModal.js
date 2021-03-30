@@ -17,7 +17,7 @@ import styled from "styled-components";
 
 export default function ItemModal({ closeModal }) {
   const [products, setProducts] = useState([]);
-  const [selectedProduct, setselectedProduct] = useState({});
+  const [selectedProduct, setSelectedProduct] = useState({});
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [store, setStore] = useState("");
@@ -25,6 +25,7 @@ export default function ItemModal({ closeModal }) {
   const currenctyRate = useSelector((state) => state.pickedCurrency);
   const dispatch = useDispatch();
 
+  //fetching fixed products from store
   const getProducts = async () => {
     try {
       const { data } = await axios.get("https://fakestoreapi.com/products")
@@ -43,6 +44,11 @@ export default function ItemModal({ closeModal }) {
     }
   };
 
+  //on mount fetch
+  useEffect(() => {
+    getProducts();
+  }, []);
+
   //change handler of item picker
   const onChange = (product) => {
     //self added items
@@ -50,14 +56,14 @@ export default function ItemModal({ closeModal }) {
       setTitle(product.value);
       //fixed items
     } else if (product) {
-      setselectedProduct(product.value);
+      setSelectedProduct(product.value);
       setTitle(product.value.title);
       setPrice(
         (Math.round(product.value.price * currenctyRate * 100) / 100).toFixed(2)
       );
       //clear
     } else {
-      setselectedProduct("");
+      setSelectedProduct("");
       setPrice("");
     }
   };
@@ -74,7 +80,7 @@ export default function ItemModal({ closeModal }) {
     try {
       const newItem = {
         title,
-        priceUSD: price,
+        priceUSD: parseInt(price),
         store,
         deliveryDate: selectedDate,
       };
@@ -84,14 +90,8 @@ export default function ItemModal({ closeModal }) {
     } catch (error) {
       Swal.fire("Error Occurred", error.message, "error");
       closeModal();
-    } finally {
     }
   };
-
-  //fetch products from api
-  useEffect(() => {
-    getProducts();
-  }, []);
 
   return (
     <div
@@ -128,6 +128,7 @@ export default function ItemModal({ closeModal }) {
         // variant='outlined'
       />
       <TextField
+        required='true'
         style={{ padding: "5px", marginBottom: "auto" }}
         onChange={(e) => {
           setPrice(e.target.value);
@@ -142,6 +143,7 @@ export default function ItemModal({ closeModal }) {
       />
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <KeyboardDatePicker
+          required='true'
           // disableToolbar
           minDate={new Date()}
           variant='inline'

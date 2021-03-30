@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { get, post } from "../../network";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import Modal from "@material-ui/core/Modal";
@@ -9,7 +8,6 @@ import ItemModal from "./ItemModal";
 import Table from "./Table";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import styled from "styled-components";
-import SingleItem from "./SingleItem";
 import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) =>
@@ -35,14 +33,19 @@ export default function Home() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+
+  //sort items by date
   const myItems = useSelector((state) => state.myItems);
   myItems.sort((a, b) => a.deliveryDate.getTime() - b.deliveryDate.getTime());
+
+  //modal handlers
   const handleOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div>
       <div style={{ display: "flex" }}>

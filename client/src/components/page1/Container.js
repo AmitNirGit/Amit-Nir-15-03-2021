@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import Archive from "./Archive";
 import Home from "./Home";
 
+//top panel
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -27,20 +28,17 @@ function TabPanel(props) {
     </div>
   );
 }
-
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
 };
-
 function a11yProps(index) {
   return {
     id: `scrollable-auto-tab-${index}`,
     "aria-controls": `scrollable-auto-tabpanel-${index}`,
   };
 }
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -49,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//container
 export default function ScrollableTabsButtonAuto() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);

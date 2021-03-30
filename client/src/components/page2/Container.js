@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Stores from "./Stores";
 import { Typography } from "@material-ui/core";
 // import { lodash } from "lodash";
-var _ = require("lodash");
+const _ = require("lodash");
 export default function Container() {
   const myArchive = useSelector((state) => state.myArchive);
   const myItems = useSelector((state) => state.myItems);
@@ -11,9 +11,9 @@ export default function Container() {
   const allItems = [...myArchive, ...myItems];
   const result = _(allItems)
     .groupBy("store")
-    .map((v, k) => ({
-      store: k,
-      history: v,
+    .map((value, key) => ({
+      store: key,
+      history: value,
     }))
     .value();
 

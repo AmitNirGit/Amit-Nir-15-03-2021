@@ -29,7 +29,6 @@ const useRowStyles = makeStyles({
 function Row(props) {
   const pickedCurrency = useSelector((state) => state.pickedCurrency);
   const { row } = props;
-  console.log(row);
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
   let totalPrice = 0;

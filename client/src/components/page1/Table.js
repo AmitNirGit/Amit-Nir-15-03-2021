@@ -188,7 +188,8 @@ export default function CustomPaginationActionsTable({ data, mainPage }) {
               <TableCell style={{ width: 160 }} align='right'>
                 {(Math.round(row.priceUSD * currencyRate * 100) / 100).toFixed(
                   2
-                )}
+                )}{" "}
+                {currencyRate > 1 ? "₪" : "$"}
               </TableCell>
               <TableCell style={{ width: 160 }} align='right'>
                 {formatToIsraeliDate(row.deliveryDate)}
