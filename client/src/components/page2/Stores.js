@@ -32,9 +32,9 @@ function Row(props) {
   console.log(row);
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
-  let totalPrice;
+  let totalPrice = 0;
   row.history.forEach((item) => {
-    totalPrice = +item.priceUSD;
+    totalPrice = totalPrice + parseInt(item.priceUSD);
   });
   totalPrice = (Math.round(totalPrice * pickedCurrency * 100) / 100).toFixed(2);
 
@@ -53,7 +53,9 @@ function Row(props) {
           {row.store}
         </TableCell>
         <TableCell align='left'>{row.history.length}</TableCell>
-        <TableCell align='left'>{totalPrice}</TableCell>
+        <TableCell align='left'>
+          {totalPrice} {pickedCurrency > 1 ? "₪" : "$"}
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
